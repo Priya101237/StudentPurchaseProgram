@@ -6,29 +6,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Loginpage {
+import driverinstance.driverinst;
 
-	 WebDriver driver;
-	
-	@FindBy(xpath="//input[@class='dont_have active']") 
+public class Loginpage  {
+
+
+	@FindBy(xpath="//*[text()='Institute Email ID (Recommended)']") 
 	public static WebElement Institute_EmailId_RadioBox;
 	
-	@FindBy(xpath="//input[@id='home_email']")
+	@FindBy(xpath="//*[@id='home_email']")
 	public static WebElement Institute_EmailId;
 	
-	@FindBy(id="send_login_link") 
+	@FindBy(xpath="//button[text()=' Send Login Link']") 
 	public static WebElement SendLoginLinkButton;
 	
-	@FindBy(xpath="//input[@class='dont_have active']") 
+	@FindBy(xpath=("//p[text()='Mobile Number (One time registration required)']"))  
 	public static WebElement MobileNumber_RadioBox;
 	
 	@FindBy(xpath="//input[@id='mobile_number']") 
 	public static WebElement MobileNumber;
 	
-	@FindBy(id="send_mobile_login_link") 
+	@FindBy(xpath=" //button[@id='send_mobile_login_link']") 
 	public static WebElement SendOTP_Mobile;
 	
-	@FindBy(xpath="//input[@class='dont_have active']") 
+	@FindBy(xpath=" //p[text()='Personal Email ID (Additional verification required)']") 
 	public static WebElement PersonalId_RadioBox;
 	
 	@FindBy(xpath="//input[@id='home_email']") 
@@ -36,7 +37,23 @@ public class Loginpage {
 
 	@FindBy(xpath="//button[@id='send_login_link']") 
 	public static WebElement personalidSendOTP;
+	
+	@FindBy(xpath="//*[@id=\"otp_form\"]/section/div/div[2]/p") 
+	public static WebElement personalidOTMessage;
+	
+	
 
+	WebDriver driver;	
+
+	public void LoginPage(WebDriver driver) 
+    {
+        this.driver=driver;
+        PageFactory.initElements( driver, this);
+    }
+
+	
+
+	
 	
 	
 	

@@ -1,89 +1,117 @@
 package StepDefinition;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import PageObject.Loginpage;
+import driverinstance.driverinst;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class Step extends Hooks{
+public class Step extends driverinst{
 
-	@Given("Launch the Studentpurchase Webpage")
-	public void launch_the_studentpurchase_webpage() {
-		
-		
-	}
-
-	@When("the user to check institute emailid shows as a default")
-	public void the_user_to_check_institute_emailid_shows_as_a_default() {
-		Loginpage.Institute_EmailId_RadioBox.isEnabled();
-	   	}
-
-	@When("the user enters the emailid")
-	public void the_user_enters_the_emailid() {
-		PageFactory.initElements(driver,Loginpage.class);
-		Loginpage.Institute_EmailId.sendKeys("abcd@gmail.com");
-		
-	}
-
-	@And("the user click SendLoginLink button")
-	public void the_user_click_send_login_link_button() {
-		Loginpage.SendLoginLinkButton.click();
-	   
-	}
-
-	@Then("the user should validate the Message")
-	public void the_user_should_validate_the_message() {
-	    
-	}
-
-	@When("the user clicks MobileNumberRadio box")
-	public void the_user_clicks_mobile_number_radio_box() {
-	    Loginpage.MobileNumber_RadioBox.click();
-	}
-
-	@When("enters the Mobile Number")
-	public void enters_the_mobile_number() {
-		Loginpage.MobileNumber.sendKeys("9865230041");
-	   
-	}
-
-	@When("the user click SendOTP button")
-	public void the_user_click_send_otp_button() {
-		Loginpage.SendOTP_Mobile.click();
-	    
-	}
-
-	@Then("the user should validate OTP Received in Mobile")
-	public void the_user_should_validate_otp_received_in_mobile() {
-	   
-	}
-
-	@When("the user clicks the PersonalEmailid box")
-	public void the_user_clicks_the_personal_emailid_box() {
-	   Loginpage.PersonalId_RadioBox.click();
-	}
-
-	@When("enters the PersonalEmailid")
-	public void enters_the_personal_emailid() {
-	   Loginpage.PersonalEmailId.sendKeys("priyatest1012@gmail.com");
-	}
- 
+	//WebDriver driver;
 	
-	@And("the user click SendOTP button")
-	public void the_user_click_sendOTP_button() {
-		Loginpage.personalidSendOTP.click();
-	   
-	}
-
-	@Then("the user should validate the OTP Received in Email")
-	public void the_user_should_validate_the_otp_received_in_email() {
-	   
-	}
-	
-	
-		
+	@Given("the user to check institute emailid shows as a default")
+		public void theUserToCheckInstituteEmailidShowsAsADefault() {
+			
+			PageFactory.initElements(driver,Loginpage.class);
+			Boolean box = Loginpage.Institute_EmailId_RadioBox.isEnabled();
+			System.out.println("Default select Emailid option:"+box);
 		}
 
+	 @And("the user enters the institute emailid")
+	 public void theUserEntersTheInstituteEmailid() {
+        Loginpage.Institute_EmailId.sendKeys("abcd@gmail.com");
+		}
+
+	
+	 @When("the user clicks sendloginlink button")
+	 public void theUserClicksSendloginlinkButton() {
+	     Loginpage.SendLoginLinkButton.click();
+		}
+
+		@Then("the user should validate the Message")
+		public void theUserShouldValidateTheMessage()  {
+		 WebElement strvalue = driver.findElement(By.xpath(" //*[@id=\"register-validate-detail\"]/div[5]/div/div[2]/div/div/div "));
+	        String expected = "Your domain is not registered with the SPP program. Please contact spp@zrpl.co.in for more information";
+	        String actual = strvalue.getText();
+	        System.out.println(actual);
+
+	    if(expected.equals(actual)){
+	        System.out.println("Pass");
+	    }
+	        else {
+	            System.out.println("Fail");
+	        }
+	    
+		}
+        
+		
+
+		@When("the user clicks mobile number option")
+		public void theUserClicksMobileNumberOption() {
+			Loginpage.MobileNumber_RadioBox.click();
+		}
+		   
+		@And("the user enters valid mobile number")
+		public void theUserEntersValidMobileNumber() {
+			Loginpage.MobileNumber.sendKeys("9865230041");
+		}
+ 
+		@And("the user clicks SendOTP mobile button")
+		public void theUserClicksSendOTPMobileButton() {
+		   Loginpage.SendOTP_Mobile.click();
+		}
+
+		@Then("the user should validate mobile OTP to Received")
+		public void theUserShouldValidateMobileOTPToReceived() {
+			
+		    
+		}
+
+		@When("the user clicks personal emailid option")
+		public void theUserClicksPersonalEmailidOption() {
+			Loginpage.PersonalId_RadioBox.click();
+		}
+
+		@And("the user enters valid personal emailid")
+		public void theUserEntersValidPersonalEmailid() {
+			   Loginpage.PersonalEmailId.sendKeys("priyasram373@gmail.com");	
+		}
+
+		@When("the user clicks sendOTP email button")
+		public void theUserClicksSendOTPEmailButton() {
+	
+			Loginpage.personalidSendOTP.click();
+		}
+
+		@Then("the user should validate the OTP Received in email address")
+		public void theUserShouldValidateTheOTPReceivedInEmailAddress() {
+			
+			/*
+			
+			 boolean strvalue = driver.findElement(By.xpath("//*[@id=\"otp_form\"]/section/div/div[2]/p")).isEnabled();
+		        String expected = "Provide the OTP received on email";
+		        String actual;
+		        System.out.println(actual);
+
+		    if(expected.equals(actual)){
+		        System.out.println("Pass");
+		    }
+		        else {
+		            System.out.println("Fail");
+		        }
+		        
+		        */
+		    
+			}
+		
+		}
+		

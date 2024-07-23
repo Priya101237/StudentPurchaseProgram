@@ -1,22 +1,22 @@
 Feature: Student purchase Login Functionality
 
-  Scenario: To Validate the login Functionality with institute emailid
-    Given Launch the Studentpurchase Webpage
+  Background: Launch the Studentpurchase Webpage
+
+  Scenario: To Validate the Institute EmailId login Functionality
+   # Given Launch the Studentpurchase Webpage
     When the user to check institute emailid shows as a default
-    And the user enters the emailid
-    And the user click SendLoginLink button
+    And the user enters the institute emailid
+    And the user clicks sendloginlink button
     Then the user should validate the Message
 
-  Scenario: To Validate the login Functionality with MobileNumber
-    Given Launch the Studentpurchase Webpage
-    When the user clicks MobileNumberRadio box 
-    And enters the Mobile Number
-    And the user click SendOTP button
-    Then the user should validate OTP Received in Mobile
+  Scenario: To Validating the Mobile Number login Functionality
+    When the user clicks mobile number option
+    And the user enters valid mobile number
+    And the user clicks SendOTP mobile button
+    Then the user should validate mobile OTP to Received
 
-  Scenario: To Validate the login Functionality with Personal Emailid
-    Given Launch the Studentpurchase Webpage
-    When the user clicks the PersonalEmailid box
-    And enters the PersonalEmailid
-    And the user click SendOTP button
-    Then the user should validate the OTP Received in Email
+  Scenario: To Validate the Personal EmailId login Functionality
+    When the user clicks personal emailid option
+    And the user enters valid personal emailid
+    And the user clicks sendOTP email button
+    Then the user should validate the OTP Received in email address
